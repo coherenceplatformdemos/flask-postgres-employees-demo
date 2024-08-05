@@ -4,9 +4,14 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('EMPLOYEES_DATABASE_URL')
-db = SQLAlchemy(app)
 
+# lil hack to ensure the database URL starts with 'postgresql://'
+db_url = os.environ.get('EMPLOYEES_DATABASE_URL')
+if db_url.startswith('postgres://'):
+    db_url = db_url.replace('postgres://', 'postgresql://', 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = db_url
+db = SQLAlchemy(app)
 
 class Employee(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
