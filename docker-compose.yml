@@ -19,7 +19,7 @@ services:
     ports:
       - "8080:8080"
     environment:
-      - EMPLOYEES_DATABASE_URL=postgresql://postgres:postgres@db:5432/employees
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/employees
     depends_on:
       - db
 
