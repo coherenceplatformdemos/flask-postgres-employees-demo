@@ -2,16 +2,18 @@
 import os
 from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 app = Flask(__name__)
 
-# lil hack to ensure the database URL starts with 'postgresql://'
+# Ensure the database URL starts with 'postgresql://'
 db_url = os.environ.get('DATABASE_URL')
 if db_url.startswith('postgres://'):
 	db_url = db_url.replace('postgres://', 'postgresql://', 1)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 
 class Employees(db.Model):
