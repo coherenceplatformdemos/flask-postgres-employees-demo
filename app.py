@@ -6,14 +6,15 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # lil hack to ensure the database URL starts with 'postgresql://'
-db_url = os.environ.get('EMPLOYEES_DATABASE_URL')
+db_url = os.environ.get('DATABASE_URL')
 if db_url.startswith('postgres://'):
-    db_url = db_url.replace('postgres://', 'postgresql://', 1)
+	db_url = db_url.replace('postgres://', 'postgresql://', 1)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = db_url
 db = SQLAlchemy(app)
 
-class Employee(db.Model):
+
+class Employees(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(100), nullable=False)
 	email = db.Column(db.String(120), unique=False, nullable=False)
@@ -22,7 +23,7 @@ class Employee(db.Model):
 
 @app.route('/')
 def index():
-	employees = Employee.query.all()
+	employees = Employees.query.all()
 	return render_template('index.html', employees=employees, editing=False)
 
 
@@ -31,7 +32,7 @@ def add_employee():
 	name = request.form['name']
 	email = request.form['email']
 	phone = request.form['phone']
-	new_employee = Employee(name=name, email=email, phone=phone)
+	new_employee = Employees(name=name, email=email, phone=phone)
 	db.session.add(new_employee)
 	db.session.commit()
 	return redirect(url_for('index'))
@@ -39,7 +40,7 @@ def add_employee():
 
 @app.route('/edit/<int:id>', methods=['GET', 'POST'])
 def edit_employee(id):
-	employee = Employee.query.get_or_404(id)
+	employee = Employees.query.get_or_404(id)
 	if request.method == 'POST':
 		employee.name = request.form['name']
 		employee.email = request.form['email']
@@ -51,7 +52,7 @@ def edit_employee(id):
 
 @app.route('/delete/<int:id>')
 def delete_employee(id):
-	employee = Employee.query.get_or_404(id)
+	employee = Employees.query.get_or_404(id)
 	db.session.delete(employee)
 	db.session.commit()
 	return redirect(url_for('index'))
@@ -61,3 +62,13 @@ if __name__ == '__main__':
 	with app.app_context():
 		db.create_all()
 	app.run(host='0.0.0.0', port=8080, debug=True)
+else:
+	with app.app_context():
+		db.create_all()
+	app.run(host='0.0.0.0', port=8080, debug=False)
+
+
+def run_app():
+	with app.app_context():
+		db.create_all()
+	app.run(host='0.0.0.0', port=8080, debug=False)

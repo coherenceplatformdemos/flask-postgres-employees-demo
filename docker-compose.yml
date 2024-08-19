@@ -13,13 +13,13 @@ services:
       context: .
       dockerfile: Dockerfile
     command: >
-      sh -c "python app.py 0.0.0.0:8080"
+      sh -c "python migrations.py && gunicorn app:run_app"
     volumes:
       - .:/app
     ports:
       - "8080:8080"
     environment:
-      - EMPLOYEES_DATABASE_URL=postgresql://postgres:postgres@db:5432/employees
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/employees
     depends_on:
       - db
 
