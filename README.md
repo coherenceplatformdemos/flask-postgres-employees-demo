@@ -61,3 +61,16 @@ A Flask-based web application for managing employees. The application supports a
 
 3. **Delete Employee:**
     - Click the "Delete" link next to the employee you want to delete.
+
+## Running migrations
+
+To run migrations, use the following command:
+```bash
+docker-compose exec web python migrations.py
+```
+
+or on Coherence add to your cnc.yaml file:
+
+```yaml
+migrate: python migrations.py
+```

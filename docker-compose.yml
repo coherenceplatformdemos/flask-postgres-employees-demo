@@ -13,7 +13,7 @@ services:
       context: .
       dockerfile: Dockerfile
     command: >
-      sh -c "python app.py 0.0.0.0:8080"
+      sh -c "python migrations.py && gunicorn app:run_app"
     volumes:
       - .:/app
     ports:
