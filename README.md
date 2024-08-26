@@ -1,6 +1,33 @@
-# Employee Management Application
+<p align="center">
+  <a href="https://www.withcoherence.com">
+    <img alt="Coherence Logo" title="Coherence" src="./logo.png" width="400" style="color: black">
+  </a>
+</p>
 
-A Flask-based web application for managing employees. The application supports adding, editing, and deleting employees, and displays a list of all employees.
+
+<p align="center">
+  <i>Platform-as-a-service in your own Cloud</i><br/> 
+  <a href="https://www.withcoherence.com">withcoherence.com</a>
+</p>
+
+<h1 align="center">
+Flask and Postgres Example
+</h1>
+
+<p align="center">
+<img src="https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white">
+<img src="https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white">
+</p>
+
+<br/>
+
+# Full stack Flask and Postgres application (employee management)
+
+<p>
+This is the code to accompany the tutorial available at our <a href="https://docs.withcoherence.com/coherence-templates/full-stack-template/?tabs=flask">Framework Guide (Flask)</a> page.
+</p>
+
+You can use it as a starting point for any full stack Flask application. Read the guide to see how to deploy it to a production environment in your own cloud, or see the instructions below to run a development version of it locally.
 
 ## Setup
 
@@ -74,3 +101,15 @@ or on Coherence add to your cnc.yaml file:
 ```yaml
 migrate: python migrations.py
 ```
+
+## Resources
+
+Take a look at the following for more information:
+
+* [Coherence](https://www.withcoherence.com)
+* [Why Choose Coherence](https://docs.withcoherence.com/#why-choose-coherence)
+* [Coherence Documentation](docs.withcoherence.com)
+
+**Cloud Infrastructure On Autopilot**
+
+_Deploy containerized and serverless apps to your own cloud in minutes, not weeks._
