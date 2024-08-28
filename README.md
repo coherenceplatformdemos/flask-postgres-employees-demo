@@ -40,8 +40,8 @@ You can use it as a starting point for any full stack Flask application. Read th
 
 1. **Clone the repository:**
     ```bash
-    git clone <repository_url>
-    cd flask_postgres_employee_app
+    git clone https://github.com/<your_github_username>/flask-postgres-employees-demo.git
+    cd flask-postgres-employees-demo
     ```
 
 2. Add your database credentials to the `docker-compose.yml` file:
